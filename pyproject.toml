@@ -36,11 +36,11 @@ dependencies = [
 dev = ["pytest", "ruff"]
 
 [tool.setuptools]
-package-dir = {"experanto.configs" = "configs"}
 packages = ["experanto", "experanto.configs"]
+package-dir = { "experanto" = "experanto", "experanto.configs" = "configs" }
 
 [tool.setuptools.package-data]
-"experanto.configs" = ["*.yaml"]
+"*" = ["*.yaml"]
 
 [tool.uv]
 index-url = "https://pypi.org/simple"
