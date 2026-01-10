@@ -1,22 +1,24 @@
 from pathlib import Path
-from omegaconf import OmegaConf, open_dict
-from hydra import compose, initialize, initialize_config_dir
+from omegaconf import OmegaConf
 
-# get config relative to this file
-script_dir = Path(__file__).parent
-config_path = script_dir / '..' / 'configs' / 'default.yaml'
-config_path = config_path.resolve()
-cfg = OmegaConf.load(config_path)
+_CURRENT_DIR = Path(__file__).parent
 
-DEFAULT_CONFIG = cfg
-DEFAULT_DATASET_CONFIG = cfg.dataset
-DEFAULT_MODALITY_CONFIG = cfg.dataset.modality_config
-DEFAULT_DATALOADER_CONFIG = cfg.dataloader
+def _load_config(filename: str):
+    """
+    Loads a config by searching both the installed package location
+    and the local development location.
+    """
+    installed_path = _CURRENT_DIR / "configs" / filename
+    dev_path = _CURRENT_DIR.parent / "configs" / filename
 
-# get config relative to this file
-script_dir = Path(__file__).parent
-config_path = script_dir / '..' / 'configs' / 'throughput_f16_prenorm.yaml'
-config_path = config_path.resolve()
-cfg = OmegaConf.load(config_path)
+    if installed_path.exists():
+        return OmegaConf.load(installed_path)
+    else:
+        return OmegaConf.load(dev_path)
 
-BENCHMARKING_CONFIG = cfg
+DEFAULT_CONFIG = _load_config("default.yaml")
+DEFAULT_DATASET_CONFIG = DEFAULT_CONFIG.dataset
+DEFAULT_MODALITY_CONFIG = DEFAULT_CONFIG.dataset.modality_config
+DEFAULT_DATALOADER_CONFIG = DEFAULT_CONFIG.dataloader
+
+BENCHMARKING_CONFIG = _load_config("throughput_f16_prenorm.yaml")
