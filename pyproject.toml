@@ -37,7 +37,7 @@ package-dir = {"experanto.experanto_configs" = "configs"}
 packages = ["experanto", "experanto.experanto_configs"]
 
 [tool.setuptools.package-data]
-"experanto.config_data" = ["*.yaml"]
+"experanto.experanto_configs" = ["*.yaml"]
 
 [tool.uv]
 index-url = "https://pypi.org/simple"
