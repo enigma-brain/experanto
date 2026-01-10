@@ -6,7 +6,7 @@ from importlib.resources import files, as_file
 def _load_config(filename: str):
     """Load a config file from the package."""
     try:
-        config_files = files("experanto.configs")
+        config_files = files("experanto.config_data")
         with as_file(config_files / filename) as config_path:
             return OmegaConf.load(config_path)
     except (TypeError, FileNotFoundError):

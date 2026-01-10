@@ -1,6 +1,6 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "experanto"
@@ -33,11 +33,11 @@ dependencies = [
 ]
 
 [tool.setuptools]
-package-dir = {"" = ".", "experanto.configs" = "configs"}
-packages = ["experanto", "experanto.configs"]
+package-dir = {"experanto.experanto_configs" = "configs"}
+packages = ["experanto", "experanto.experanto_configs"]
 
 [tool.setuptools.package-data]
-"experanto.configs" = ["*.yaml"]
+"experanto.config_data" = ["*.yaml"]
 
 [tool.uv]
 index-url = "https://pypi.org/simple"
