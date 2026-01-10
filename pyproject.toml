@@ -33,15 +33,13 @@ dependencies = [
 ]
 
 [tool.setuptools]
-# 1. Register the new package name 'experanto.resources'
-packages = ["experanto", "experanto.resources"]
+packages = ["experanto", "experanto.configs"]
 
-# 2. Map the root 'configs' folder to 'experanto.resources' to avoid collision
-package-dir = { "experanto" = "experanto", "experanto.resources" = "configs" }
+[tool.setuptools.package-dir]
+"experanto.configs" = "configs"
 
 [tool.setuptools.package-data]
-# 3. Ensure YAMLs are included in the new namespace
-"experanto.resources" = ["*.yaml"]
+"experanto.configs" = ["*.yaml"]
 
 [tool.uv]
 index-url = "https://pypi.org/simple"
