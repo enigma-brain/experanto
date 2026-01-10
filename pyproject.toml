@@ -32,15 +32,16 @@ dependencies = [
     "tqdm"
 ]
 
-[project.optional-dependencies]
-dev = ["pytest", "ruff"]
-
 [tool.setuptools]
-packages = ["experanto", "experanto.configs"]
-package-dir = { "experanto" = "experanto", "experanto.configs" = "configs" }
+# 1. Register the new package name 'experanto.resources'
+packages = ["experanto", "experanto.resources"]
+
+# 2. Map the root 'configs' folder to 'experanto.resources' to avoid collision
+package-dir = { "experanto" = "experanto", "experanto.resources" = "configs" }
 
 [tool.setuptools.package-data]
-"*" = ["*.yaml"]
+# 3. Ensure YAMLs are included in the new namespace
+"experanto.resources" = ["*.yaml"]
 
 [tool.uv]
 index-url = "https://pypi.org/simple"
