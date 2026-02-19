@@ -9,7 +9,7 @@ description = "Python package to interpolate recordings and stimuli of neuroscie
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "einops>=0.8.1",
+    "einops>=0.7.0",
     "hydra-core",
     "jaxtyping",
     "jupyterlab",
